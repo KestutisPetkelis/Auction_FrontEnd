@@ -2,37 +2,138 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* My classes */
+.d-flex{
   display: flex;
+}
+.column{
   flex-direction: column;
-  align-items: center;
+}
+.column-reverse{
+  flex-direction: column-reverse;
+}
+.f-wrap{
+  flex-wrap: wrap;
+}
+.flex1{
+  flex: 1;
+}
+.flex2{
+  flex: 2;
+}
+.flex3{
+  flex: 3;
+}
+.flex4{
+  flex: 4;
+}
+.flex5{
+  flex: 5;
+}
+.just-center{
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+.just-between{
+  justify-content: space-between;
+}
+.just-evenly{
+  justify-content: space-evenly;
+}
+.just-start{
+  justify-content: start;
+}
+.just-end{
+  justify-content: end;
+}
+.just-around{
+  justify-content: space-around;
+}
+.ali-center{
+  align-items: center;
+}
+.ali-start{
+  align-content: flex-start;
+}
+.ali-around{
+  align-content: space-around;
+}
+.just-space{
+  justify-content: space-around;
+}
+.d-none{
+  display: none;
+}
+.bg-blue{
+  background-color: rgb(105, 186, 212);
+}
+.bg-rose{
+  background-color: rgb(216, 163, 163);
 }
 
-.App-link {
-  color: #61dafb;
+/* ******* Classes, Elements ******* */
+.sticky{
+  position: sticky;
+  top: 0;
+}
+button{
+  cursor: pointer;
+  padding: 5px 15px;
+  margin: 10px;
+  /* text-decoration: underline; */
+}
+.pointer{
+  cursor: pointer;
+}
+.text-left{
+  text-align: left;
+}
+.text-nondec{
+  text-decoration: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.pl-20{
+  padding-left: 20px;
+}
+.mv-5{
+  margin: 5px 0;
+}
+.mh-20{
+  margin-left: 20px;
+  margin-right: 20px;
+}
+/* ******* Elements ******** */
+.userinfo{
+  padding:10px;
+  margin-right: 100px;
+}
+.postcard{
+  width:90%;
+  max-height: 200px;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid blue;
+  border-radius: 10px;
+}
+.postimg{
+  width:160px;
+  max-height: 160px;
+  object-fit: contain;
+  object-position: center;
+
+}
+.commentdiv{
+  min-height: 60px;
+ }
+.littlepic{
+  width:100px;
+  height: 100px;
+  object-fit: contain;
+  object-position: center;
+
+}
+.comment{
+  border: blue 1px solid;
+  border-radius: 10px;
+  margin: 5px 0;
+  padding: 10px 20px;
 }
