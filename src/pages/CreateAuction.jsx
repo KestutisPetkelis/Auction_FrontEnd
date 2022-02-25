@@ -37,18 +37,6 @@ const CreateAuction = () => {
   
     //console.log("create auction", auction)
 
-
-
-
-
-
-    // let thistime=new Date(Date.now()+ inputs.time*60000) 
-    // let time2 = Date.now()
-    // let time = time2+ inputs.time*60000
-    
-    // console.log("click", time2,time)
-    // console.log("click", new Date(time2).toLocaleString("lt-Lt") ,new Date(time).toLocaleString("lt-Lt"))
-  
   }
 
 

@@ -12,9 +12,11 @@ const AllAuctions = () => {
   const nav=useNavigate()
 
   useEffect(() =>{
-      
-    fetchData()
-
+    const fechtPooling = setInterval(() => {
+      fetchData()
+     // console.log('refetch')
+      }, 1000);
+      return () => clearInterval(fechtPooling)
   },[])
 
   async function fetchData(){
@@ -29,9 +31,9 @@ const AllAuctions = () => {
 
       const res = await fetch('http://localhost:4000/allauctions', options)
       const data = await res.json()
-      console.log("all auctions ", data)
+     // console.log("all auctions ", data)
       if(data.user){
-          console.log("Active user on all auctions", data.user.username)
+         // console.log("Active user on all auctions", data.user.username)
           setThisuser(data.user.username)
       }
       setAllauctions(data.allAuctions)
@@ -41,7 +43,7 @@ const AllAuctions = () => {
   return (
     <div>
       <h3>All Auctions</h3>
-      <div className=''>
+      <div className=' d-flex column-reverse'>
         {allauctions.map((x, index)=>
             <div key={index}>
               <Auction index={index} user = {x} />

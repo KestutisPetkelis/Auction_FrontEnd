@@ -6,8 +6,8 @@ const Auction = ({index, user}) => {
     const [timeLeft, setTimeLeft] = useState("")
     useEffect(() => {
         if (user.time-Date.now() > 0) {
-            console.log(user.time-Date.now() - 1000)
-          setTimeout(() => setTimeLeft(user.time-Date.now() - 1000), 1000);
+            // console.log(user.time-Date.now())
+          setTimeout(() => setTimeLeft(user.time-Date.now()), 1000);
         } else {
           setTimeLeft('Time expired');
         }

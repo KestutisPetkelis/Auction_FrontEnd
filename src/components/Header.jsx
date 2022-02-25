@@ -18,20 +18,18 @@ const Header = ({toolbar, setToolbar, setMessage, thisUser, setThisUser}) => {
     const nav=useNavigate()
 
     const logout = async() =>{
-      //req.session.user=null
-      
-        const options = {
-          method: "GET",
-          headers: {
-              "content-type": "application/json",
-          },
-          credentials: "include",     // reikia sesijai palaikyti
-          //body: JSON.stringify(user) // nereikia -= body: JSON.stringify(user) =- nes GET metodas
-        }
+      const options = {
+        method: "GET",
+        headers: {
+            "content-type": "application/json",
+        },
+        credentials: "include",     // reikia sesijai palaikyti
+        //body: JSON.stringify(user) // nereikia -= body: JSON.stringify(user) =- nes GET metodas
+      }
   
-        const res = await fetch('http://localhost:4000/logout', options)
-        const data = await res.json()
-        console.log(data)
+      const res = await fetch('http://localhost:4000/logout', options)
+      const data = await res.json()
+      console.log(data)
       
       setMessage("")
       setToolbar(true)

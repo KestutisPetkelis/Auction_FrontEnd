@@ -5,15 +5,30 @@ import { useParams } from 'react-router-dom'
 const SingleAuction = () => {
     const {id}= useParams()
     const [thisauction, setThisauction] = useState({})
-    const [thisuser, setThisuser] =useState("")
+    const [thisuser, setThisuser] =useState()
     const [bids, setBids] = useState([])
 
     const inputBid = useRef()
 
-    console.log(id)
+    //console.log(id)
+
+    const [timeLeft, setTimeLeft] = useState("")
+
+    useEffect(() => {
+        if (thisauction.time-Date.now() > 0) {
+            //console.log(thisauction.time-Date.now())
+          setTimeout(() => setTimeLeft(thisauction.time-Date.now()), 1000);
+        } else {
+          setTimeLeft('Time expired');
+        }  
+    });
 
     useEffect(()=>{
+        const fechtPooling = setInterval(() => {
         fetchData()
+        //console.log('refetch')
+        }, 1000);
+        return () => clearInterval(fechtPooling)
     },[])
 
     async function fetchData(){
@@ -28,10 +43,10 @@ const SingleAuction = () => {
   
         const res = await fetch('http://localhost:4000/auction/'+id, options)
         const data = await res.json()
-        console.log("single auction ", data)
+        //console.log("single auction ", data)
 
         if(data.user){
-            console.log("Active user on single post", data.user)
+           // console.log("Active user on single post", data.user)
             setThisuser(data.user)
         }
         setThisauction(data.singleauction)
@@ -78,28 +93,35 @@ const SingleAuction = () => {
   return (
     <div>
         <div className='d-flex just-evenly postcard'>
-          <div className='flex2'>
-            <img className='postimg' src={thisauction.image} alt="nieko ner..."/>
-          </div>
-          <div className='d-flex column just-center flex3 text-left'>
-            <p className='mv-5'> <i>{thisauction.title}</i></p>
-            <p className='mv-5'>Owner: <b>{thisauction.username}</b></p> 
-            <p className='mv-5'>End time: {(new Date(thisauction.time)).toLocaleString('lt-Lt')}</p>
-            {thisauction.time>Date.now() &&
-              <div>
-                <input type='text' size='20' ref={inputBid}/> <button onClick={()=>addbid(thisauction._id)}> Make bid </button>
-              </div>
-            }
-          </div>
-          <div className='flex3 text-left'>
-            <p className='mv-5'>Start price: <i>{thisauction.startprice}</i></p>
-            <p className='mv-5'>Current price: <b>{thisauction.sellprice}</b></p> 
-          </div>
-                
+          {thisauction?.startprice ?
+          <>
+            <div className='flex2'>
+              <img className='postimg' src={thisauction.image} alt="nieko ner..."/>
+            </div>
+            <div className='d-flex column just-center flex3 text-left'>
+              <p className='mv-5'> <i>{thisauction.title}</i></p>
+              <p className='mv-5'>Owner: <b>{thisauction.username}</b></p> 
+              <p className='mv-5'>End time: {(new Date(thisauction.time)).toLocaleString('lt-Lt')}</p>
+              {thisauction.time>Date.now() &&
+                <div>
+                  <input type='text' size='20' ref={inputBid}/> <button onClick={()=>addbid(thisauction._id)}> Make bid </button>
+                </div>
+              }
+            </div>
+            <div className='flex3 text-left'>
+              <p className='mv-5'>Start price: <i>{thisauction.startprice}</i></p>
+              <p className='mv-5'>Current price: <b>{thisauction.sellprice}</b></p>
+              
+              <p>{Number(timeLeft>0) ? new Date(timeLeft).toISOString('lt-Lt').slice(11,19) : <b>{timeLeft}</b>}</p> 
+            
+            </div>
+                  
+            </> : 'loading...'}
         </div>
         
         <div>
             <h3>Bids</h3>
+            <div className='d-flex column-reverse'>
             {bids.map((x,index)=>
                 <div key={index}>
                     <div className='d-flex postcard just-center'>
@@ -112,6 +134,7 @@ const SingleAuction = () => {
                    
                 </div>
             )}
+            </div>
         </div>
     </div>
   )

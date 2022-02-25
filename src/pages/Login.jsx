@@ -1,9 +1,7 @@
 import React from 'react'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 
 const Login = ({toolbar, setToolbar, message, setMessage, setThisUser}) => {
-
-    //const [message, setMessage] = useState("")
 
     const inputs ={
         name: useRef(),
