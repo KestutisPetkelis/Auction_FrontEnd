@@ -1,4 +1,5 @@
 import React from 'react'
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 
@@ -35,6 +36,34 @@ const Header = ({toolbar, setToolbar, setMessage, thisUser, setThisUser}) => {
       setToolbar(true)
       setThisUser({username:"", money:""})
       nav("/")
+    }
+// ************************
+    useEffect(()=>{
+      const fechtPooling = setInterval(() => {
+      fetchData()
+      //console.log('refetch')
+      }, 1000);
+      return () => clearInterval(fechtPooling)
+    },[])
+
+    async function fetchData(){
+      const options = {
+        method: "GET",
+        headers: {
+            "content-type": "application/json",
+        },
+        credentials: "include",     // reikia sesijai palaikyti
+        //body: JSON.stringify(user) // nereikia -= body: JSON.stringify(user) =- nes GET metodas
+      }
+
+      const res = await fetch('http://localhost:4000/info', options)
+      const data = await res.json()
+      //console.log("this user ", data)
+
+      if(data.activeuser){
+        //console.log("Active user on single post", data.activeuser.username)
+        setThisUser({username:data.activeuser.username, money:data.activeuser.money})
+      }
     }
 
   return (
