@@ -2,10 +2,10 @@ import React from 'react'
 import { useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const BidsHistory = () => {
+const MyAuctions = () => {
+    const [allauctions, setAllauctions] = useState([])
+    const [thisuser, setThisuser] =useState("")
 
-  const [allauctions, setAllauctions] = useState([])
-  const [thisuser, setThisuser] =useState("")
   const nav = useNavigate()
 
   const getsingle=(arg)=>{
@@ -14,7 +14,7 @@ const BidsHistory = () => {
   }
 
   useEffect(() =>{
-    
+   
     fetchData()
     
   },[])
@@ -31,13 +31,13 @@ const BidsHistory = () => {
 
       const res = await fetch('http://localhost:4000/allauctions', options)
       const data = await res.json()
-      console.log("all auctions ", data)
+     // console.log("all auctions ", data)
       if(data.user){
-        console.log("Active user on all auctions", data.user.username)
-        setThisuser(data.user.username)
-        const myBids = data.allAuctions.filter(x => x.bids.find(y=>y.username===data.user.username))
-        console.log("Bids? ", myBids)
-        setAllauctions(myBids)
+          console.log("Active user on all auctions", data.user.username)
+          setThisuser(data.user.username)
+          const myBids = data.allAuctions.filter(x => x.username===data.user.username)
+            console.log("Bids? ", myBids)
+            setAllauctions(myBids)
       }
       //setAllauctions(data.allAuctions)
       
@@ -46,8 +46,8 @@ const BidsHistory = () => {
 
   return (
     <div>
-        <h4>My Bids History</h4>
-        <h5><i>(Click on picture if you want observe an auction with your bid or take part in it further)</i></h5>
+        <h3>All My Auctions</h3>
+        <h5><i>(Click on picture if you want observe your single auction or take part in it (that's crazy...)))</i></h5>
         <div className=' d-flex column-reverse'>
         {allauctions.map((x, index)=>
             <div key={index} className="postcard2 d-flex">
@@ -61,7 +61,7 @@ const BidsHistory = () => {
                 <p>End time: <i><b>{(new Date(x.time)).toLocaleString('lt-Lt')}</b></i></p>
               </div>
               <div className='flex1'>
-               <p>Bidders: </p> 
+               <p>Bidders </p> 
               </div>
               {x.bids.length>0 &&
               <div className='flex2 d-flex column-reverse just-start'>
@@ -80,8 +80,9 @@ const BidsHistory = () => {
         )}
       
       </div>
+    
     </div>
   )
 }
 
-export default BidsHistory
+export default MyAuctions

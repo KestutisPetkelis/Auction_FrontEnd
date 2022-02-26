@@ -63,6 +63,9 @@
 .d-none{
   display: none;
 }
+.d-inline{
+  display: inline-block
+}
 .bg-blue{
   background-color: rgb(105, 186, 212);
 }
@@ -90,7 +93,9 @@ button{
 .text-nondec{
   text-decoration: none;
 }
-
+.pl-10{
+  padding-left: 10px;
+}
 .pl-20{
   padding-left: 20px;
 }
@@ -113,6 +118,8 @@ button{
   margin: 10px;
   border: 1px solid blue;
   border-radius: 10px;
+  -webkit-box-shadow: 5px 3px 15px 2px #000000; 
+  box-shadow: 5px 3px 15px 2px #000000;
 }
 .postimg{
   width:160px;
@@ -136,4 +143,30 @@ button{
   border-radius: 10px;
   margin: 5px 0;
   padding: 10px 20px;
+}
+.littleimg{
+  min-width:160px;
+  max-width: 160px;
+  max-height: 160px;
+  object-fit: contain;
+  object-position: center;
+  padding: 5px;
+  margin-right: 20px;
+
+}
+p {
+  margin: 5px 0;
+}
+.w-60{
+  min-width: 100px
+}
+.postcard2{
+  width:90%;
+  min-height: 100px;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid blue;
+  border-radius: 10px;
+  -webkit-box-shadow: 5px 3px 15px 2px #000000; 
+  box-shadow: 5px 3px 15px 2px #000000;
 }

@@ -9,6 +9,7 @@ import AllAuctions from './pages/AllAuctions';
 import BidsHistory from './pages/BidsHistory';
 import SingleAuction from './pages/SingleAuction';
 import CreateAuction from './pages/CreateAuction';
+import MyAuctions from './pages/MyAuctions';
 
 import './App.css';
 
@@ -44,6 +45,7 @@ function App() {
         <Route path="/register" element={<Register />}></Route>
         <Route path="/allauctions" element ={<AllAuctions />} ></Route>  
         <Route path="/createauction" element={<CreateAuction/>}/>
+        <Route path="/myauctions" element={<MyAuctions/>}/>
         <Route path="/bidshistory" element={<BidsHistory/>}/>
         <Route path="/singleauction/:id" element={<SingleAuction/>}/>
       </Routes>

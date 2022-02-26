@@ -78,12 +78,13 @@ const Header = ({toolbar, setToolbar, setMessage, thisUser, setThisUser}) => {
           {!toolbar &&
             <div>
               <div className='d-flex just-between'>
-                <div className='userinfo'> User: <i>{thisUser.username}</i> </div> 
+                <div className='userinfo'> User: <b><i>{thisUser.username}</i></b> </div> 
                 <div className='userinfo'>Money: <i>{thisUser.money} €</i></div>
               </div>
               <div className='d-flex just-evenly'>
                 <button><Link className='text-nondec' to="/createauction"> Create auction </Link></button>                
                 <button><Link className='text-nondec' to="/allauctions"> All auctions </Link></button>
+                <button><Link className='text-nondec' to="/myauctions"> My auctions </Link></button>
                 <button><Link className='text-nondec' to="/bidshistory"> My bids history </Link></button>
                 {/* <button><Link className='text-nondec' to="/singleauction/:id"> Single auction </Link></button> */}
                 <button onClick={()=>logout()}>Logout</button>

@@ -109,10 +109,10 @@ const SingleAuction = () => {
               }
             </div>
             <div className='flex3 text-left'>
-              <p className='mv-5'>Start price: <i>{thisauction.startprice}</i></p>
-              <p className='mv-5'>Current price: <b>{thisauction.sellprice}</b></p>
+              <p className='mv-5 pl-10'>Start price: <i>{thisauction.startprice}</i></p>
+              <p className='mv-5 pl-10'>Current price: <b>{thisauction.sellprice}</b></p>
               
-              <p>{Number(timeLeft>0) ? new Date(timeLeft).toISOString('lt-Lt').slice(11,19) : <b>{timeLeft}</b>}</p> 
+              <p className='mv-5 pl-10'>{Number(timeLeft>0) ? new Date(timeLeft).toISOString('lt-Lt').slice(11,19) : <b>{timeLeft}</b>}</p> 
             
             </div>
                   

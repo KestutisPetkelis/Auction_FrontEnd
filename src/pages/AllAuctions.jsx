@@ -1,6 +1,6 @@
 import React from 'react'
 import { useEffect, useState} from 'react'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 
 import Auction from '../components/Auction'
 
@@ -9,7 +9,8 @@ const AllAuctions = () => {
   const [allauctions, setAllauctions] = useState([])
   const [thisuser, setThisuser] =useState("")
 
-  const nav=useNavigate()
+  // const nav=useNavigate()
+  
 
   useEffect(() =>{
     const fechtPooling = setInterval(() => {
@@ -43,6 +44,7 @@ const AllAuctions = () => {
   return (
     <div>
       <h3>All Auctions</h3>
+      <h5><i>(Click on picture if you want observe single auction or take part in it)</i></h5>
       <div className=' d-flex column-reverse'>
         {allauctions.map((x, index)=>
             <div key={index}>
