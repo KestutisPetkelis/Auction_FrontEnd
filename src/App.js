@@ -1,6 +1,7 @@
 import React from 'react';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 import Header from './components/Header';
 import Register from './pages/Register';
@@ -32,22 +33,40 @@ function App() {
   const [toolbar, setToolbar] = useState((true))
   const [message, setMessage] = useState("")
   const [thisUser, setThisUser] = useState({username:"", money:""})
+  const [infoFromServer, setInfoFromServer] = useState("")
+    
+  useEffect(() => {
+    socket.on('auctionToAll', message => {
+      console.log(message);
+      setInfoFromServer(message+' (close)');
+      //setPseudoModal(true)
+    });
+    return () => socket.off('auctionToAll');
+  }, [socket, message]);
+  // // }, []);
+
+
 
   return (
     <div className="App" style={divStyle}>
       <BrowserRouter>
       
     <Header toolbar={toolbar} setToolbar={setToolbar} setMessage={setMessage} thisUser={thisUser} setThisUser={setThisUser}/>
+    
+    <div onClick={()=>setInfoFromServer("")} className="pointer socketmsg"> 
+        <i>{infoFromServer}</i>
+     </div>
+   
       <Routes>
         <Route path="/" element={<Login toolbar={toolbar} setToolbar={setToolbar} 
                   message={message} setMessage={setMessage}
                   setThisUser={setThisUser}/>}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/allauctions" element ={<AllAuctions />} ></Route>  
-        <Route path="/createauction" element={<CreateAuction/>}/>
+        <Route path="/createauction" element={<CreateAuction socket={socket}/>}/>
         <Route path="/myauctions" element={<MyAuctions/>}/>
         <Route path="/bidshistory" element={<BidsHistory/>}/>
-        <Route path="/singleauction/:id" element={<SingleAuction/>}/>
+        <Route path="/singleauction/:id" element={<SingleAuction socket={socket}/>}/>
       </Routes>
     </BrowserRouter>
       

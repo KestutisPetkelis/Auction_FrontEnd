@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRef, useState } from 'react'
 
-const CreateAuction = () => {
+const CreateAuction = ({socket}) => {
   const inputsRef ={
     title: useRef(),
     image: useRef(),
@@ -31,11 +31,15 @@ const CreateAuction = () => {
     const res = await fetch('http://localhost:4000/createauction', options)
     const data = await res.json()
                               
-    console.log(data, data.message)
+    // console.log(data, data.message)
 
     setMessage(data.message)
+    if(data.success){
+      // console.log("socket must be there")
+      socket.emit("newAuction", data.newauction.username+" created auction: "+ '"'+data.newauction.title+'" ')
+    }
   
-    //console.log("create auction", auction)
+    // console.log("create auction", auction)
 
   }
 

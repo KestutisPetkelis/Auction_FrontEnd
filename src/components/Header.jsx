@@ -30,7 +30,7 @@ const Header = ({toolbar, setToolbar, setMessage, thisUser, setThisUser}) => {
   
       const res = await fetch('http://localhost:4000/logout', options)
       const data = await res.json()
-      console.log(data)
+      // console.log(data)
       
       setMessage("")
       setToolbar(true)

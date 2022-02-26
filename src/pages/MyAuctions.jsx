@@ -61,19 +61,19 @@ const MyAuctions = () => {
                 <p>End time: <i><b>{(new Date(x.time)).toLocaleString('lt-Lt')}</b></i></p>
               </div>
               <div className='flex1'>
-               <p>Bidders </p> 
+               <p>Bidders: </p> 
               </div>
-              {x.bids.length>0 &&
+              {x.bids.length>0 ?
               <div className='flex2 d-flex column-reverse just-start'>
               {x.bids.map((y,i)=>
                 < div key={i} className="text-left ">
                   <span className='w-60 d-inline'>{y.username} </span>
                   <span className='w-60 d-inline'> Bid: <b>{y.bid}</b> €</span>
                   <span> Bid time: <i><b>{(new Date(y.time)).toLocaleString('lt-Lt')}</b></i></span>
-                </div>
+                </div> 
               )}
               
-              </div>
+              </div> : <div><span><i>No any bidder has not been find</i></span> </div>
               }
               {/* <Auction index={index} user = {x} /> */}
             </div>

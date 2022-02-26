@@ -31,12 +31,12 @@ const BidsHistory = () => {
 
       const res = await fetch('http://localhost:4000/allauctions', options)
       const data = await res.json()
-      console.log("all auctions ", data)
+      // console.log("all auctions ", data)
       if(data.user){
-        console.log("Active user on all auctions", data.user.username)
+        // console.log("Active user on all auctions", data.user.username)
         setThisuser(data.user.username)
         const myBids = data.allAuctions.filter(x => x.bids.find(y=>y.username===data.user.username))
-        console.log("Bids? ", myBids)
+        // console.log("Bids? ", myBids)
         setAllauctions(myBids)
       }
       //setAllauctions(data.allAuctions)

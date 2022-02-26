@@ -29,7 +29,7 @@ const Auction = ({index, user}) => {
             <div  className="flex2">
                 <p><i>{user.title}</i></p>
                 <p>Start price: <i>{user.startprice}</i></p>
-                <p>Current price: <i>{user.sellprice}</i></p>
+                <p>Current price: <b><i>{user.sellprice}</i></b></p>
                 <p>Owner: <b>{user.username}</b></p>
             </div>
             <div  className="flex2">

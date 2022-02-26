@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect, useState, useRef } from 'react'
 import { useParams } from 'react-router-dom'
 
-const SingleAuction = () => {
+const SingleAuction = ({socket}) => {
     const {id}= useParams()
     const [thisauction, setThisauction] = useState({})
     const [thisuser, setThisuser] =useState()
@@ -85,8 +85,12 @@ const SingleAuction = () => {
         const res = await fetch('http://localhost:4000/addbid', options)
         const data = await res.json()
         inputBid.current.value=""                           
-        console.log(data)
+        // console.log(data)
         fetchData()
+        if(data){
+          // console.log("socket must be there")
+          socket.emit("newBid", thisbid.username+' has been bid '+ thisbid.bid + " € on auction: "+'"'+thisauction.title+'" ')
+        }
     }
     
 

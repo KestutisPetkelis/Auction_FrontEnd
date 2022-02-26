@@ -170,3 +170,8 @@ p {
   -webkit-box-shadow: 5px 3px 15px 2px #000000; 
   box-shadow: 5px 3px 15px 2px #000000;
 }
+.socketmsg {
+  /* border: 1px solid blue; */
+  min-height: 24px;
+  color: blue;
+}
