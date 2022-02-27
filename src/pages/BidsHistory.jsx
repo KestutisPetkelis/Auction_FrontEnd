@@ -14,9 +14,10 @@ const BidsHistory = () => {
   }
 
   useEffect(() =>{
-    
-    fetchData()
-    
+    const fechtPooling = setInterval(() => {
+      fetchData()
+    }, 1000);
+      return () => clearInterval(fechtPooling)
   },[])
 
   async function fetchData(){
